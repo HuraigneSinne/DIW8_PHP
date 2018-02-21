@@ -47,3 +47,12 @@ switch ($space1 <=> $space2) {
         echo "space1 est plus grand que space2\n <br>";
         break;
 }
+
+
+
+// jouer avec timestamp
+echo "Début de la requête à : " . date('d/m/Y H:i:s', $_SERVER['REQUEST_TIME']) . "\n<br>";
+
+sleep(15);
+
+echo "Fin de la requête à : " . date('d/m/Y H:i:s') . "\n<br>";
