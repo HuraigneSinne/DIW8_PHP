@@ -115,6 +115,7 @@
             </div>
             <?php else: ?>
             <h2>Message sent, thank you <?php echo $_POST['name']; ?></h2>
+            <textarea id="message" name="message" class="form-control" rows="6" placeholder="Your message*" readonly><?php echo isset($_POST['message']) ? $_POST['message'] : ''; ?></textarea>
             <?php endif; ?>
         </div>
     </section>
