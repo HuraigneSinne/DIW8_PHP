@@ -66,9 +66,10 @@
 </head>
 <body>
     <?php
-        $form_errors = [];
-        // Si le formulaire a été soumis
-        if (isset($_POST['form_contact']) && $_POST['form_contact'] === '1') {
+
+        function validation() {
+            global $form_errors;
+
             // Contrôle des champs
             if (strlen($_POST['name']) == 0)
                 $form_errors['name'] = 'Le nom n\'est pas valide';
@@ -77,6 +78,13 @@
             if (strlen($_POST['message']) < 10)
                 $form_errors['message'] = 'Le message n\'est pas valide';
         }
+
+        $form_errors = [];
+        // Si le formulaire a été soumis
+        if (isset($_POST['form_contact']) && $_POST['form_contact'] === '1') {
+            validation();
+        }
+        
     ?>
     <section class="bg-blue">
         <div class="container">
