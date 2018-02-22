@@ -72,7 +72,10 @@
             // Contrôle des champs
             if (strlen($_POST['name']) == 0)
                 $form_errors['name'] = 'Le nom n\'est pas valide';
-
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+                $form_errors['email'] = 'L\'email n\'est pas valide';
+            if (strlen($_POST['message']) < 10)
+                $form_errors['message'] = 'Le message n\'est pas valide';
         }
     ?>
     <section class="bg-blue">
@@ -88,18 +91,20 @@
                             <div class="col-lg-6">
                                 <div class="form-group mb-4">
                                     <input id="name" name="name" type="text" class="form-control <?php echo isset($form_errors['name']) ? 'is-invalid' : ''; ?>" placeholder="Your name*" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
-                                    <?php echo isset($form_errors['name']) ? '<p class="invalid-feedback">Le nom n\'est pas valide</p>' : ''; ?>
+                                    <?php echo isset($form_errors['name']) ? '<p class="invalid-feedback">' . $form_errors['name'] . '</p>' : ''; ?>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group mb-4">
-                                    <input id="email" name="email" type="email" class="form-control" placeholder="Your email*" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                                    <input id="email" name="email" type="email" class="form-control <?php echo isset($form_errors['email']) ? 'is-invalid' : ''; ?>" placeholder="Your email*" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                                    <?php echo isset($form_errors['email']) ? '<p class="invalid-feedback">' . $form_errors['email'] . '</p>' : ''; ?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group mb-5">
-                            <textarea id="message" name="message" class="form-control" rows="6" placeholder="Your message*"></textarea>
+                            <textarea id="message" name="message" class="form-control <?php echo isset($form_errors['message']) ? 'is-invalid' : ''; ?>" rows="6" placeholder="Your message*"><?php echo isset($_POST['message']) ? $_POST['message'] : ''; ?></textarea>
+                            <?php echo isset($form_errors['message']) ? '<p class="invalid-feedback">' . $form_errors['message'] . '</p>' : ''; ?>
                         </div>
 
                         <div class="text-center">
