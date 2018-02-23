@@ -17,11 +17,14 @@
             'sirop' => 1.5,
             'whisky' => 4
         ];
+
+        if (!empty($_GET['choix_carte']))
+            echo "Le prix est de " . $_GET['choix_carte'];
+
     ?>
     <form>
         <input type="search" name="recherche"/>
         <?php
-            echo select('choix_carte', $carte);
             echo select('choix_carte', $carte, true);
         ?>
         <button>Rechercher</button>
