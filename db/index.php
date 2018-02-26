@@ -24,4 +24,16 @@ var_dump($query);
 $result = $query->fetch();
 var_dump($result);
 
+$result = $query->fetch();
+var_dump($result);
+
+$result = $query->fetch();
+var_dump($result);
+
+$query = $db->query("SELECT firstname FROM user");
+$results = $query->fetchAll();
+var_dump($results);
+
+
+
 echo "</pre>";
