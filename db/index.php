@@ -30,10 +30,20 @@ var_dump($result);
 $result = $query->fetch();
 var_dump($result);
 
-$query = $db->query("SELECT firstname FROM user");
+$query = $db->query("SELECT firstname FROM user ORDER BY firstname");
 $results = $query->fetchAll();
 var_dump($results);
 
 
+$prepare = $db->prepare("SELECT :column1, :column2 FROM user");
+var_dump($prepare);
+
+$prepare->bindValue(':column1', 'firstname', PDO::PARAM_STR);
+$prepare->bindValue(':column2', 'email', PDO::PARAM_STR);
+
+$prepare->execute();
+
+$result = $prepare->fetchAll();
+var_dump($result);
 
 echo "</pre>";
