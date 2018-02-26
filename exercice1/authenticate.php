@@ -21,7 +21,7 @@ if (isset($_POST['login']) && isset($_POST['motdepasse'])) {
     $connected = false;
     foreach($users as $user) {
         if ($user['login'] == $_POST['login'] && $user['password'] == $_POST['motdepasse']) {
-            header("Location: user.php");
+            header("Location: user.php?login=" . $user['login']);
             die();
         }
     }
