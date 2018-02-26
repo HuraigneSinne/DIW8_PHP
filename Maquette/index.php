@@ -66,6 +66,8 @@
 </head>
 <body>
     <?php
+        // Inclusion du fichier database.php
+        require_once('database.php');
 
         function validation() {
             global $form_errors;
@@ -83,6 +85,23 @@
         // Si le formulaire a été soumis
         if (isset($_POST['form_contact']) && $_POST['form_contact'] === '1') {
             validation();
+
+            if (count($form_errors) == 0) {
+                // Connexion à la base
+                $connexion = connexion();
+
+                // Préparation de la requête
+                $requete = $connexion->prepare('INSERT INTO contact(name, email, message) VALUES (:name, :email, :message)');
+                $requete->bindValue(':name', htmlspecialchars($_POST['name']), PDO::PARAM_STR);
+                $requete->bindValue(':email', htmlspecialchars($_POST['email']), PDO::PARAM_STR);
+                $requete->bindValue(':message', htmlspecialchars($_POST['message']), PDO::PARAM_STR);
+
+                // Exécution de la requête
+                $requete->execute();
+
+                // Vérification
+                error_log($requete->rowCount() . " ligne insérée");
+            }
         }
         
     ?>
