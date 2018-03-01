@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    $connected = isset($_SESSION['connected']) && $_SESSION['connected'];
     require_once('header.php');
 ?>
 
@@ -71,7 +73,7 @@
 
     $results = $query->fetchAll();
 
-    $tableau = table_html($results, true, 'index.php');
+    $tableau = table_html($results, $connected, 'index.php');
 
     echo $tableau;
 
