@@ -6,6 +6,11 @@ define('PASS', ''); // Mot de passe de connexion à la base
 define('DB', 'diw8'); // Base de données sur laquelle on va faire les requêtes
 
 function connexion() {
+    static $db;
+
+    if (isset($db))
+        return $db;
+
     // Tableau d'options supplémentaires pour la connexion
     $db_options = array(
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", // On force l'encodage en utf8
