@@ -42,3 +42,12 @@ function postValue($value, $default = '') {
 function postInt($value, $default = '') {
     return (int)postValue($value, $default);
 }
+
+function getImplode($key = '', $new_val = '') {
+    if ($key != '')
+        $_GET[$key] = $new_val;
+    return implode('&', array_map(
+        function ($value, $key) {
+            return $key . '=' . $value;
+        }, $_GET, array_keys($_GET)));
+}
