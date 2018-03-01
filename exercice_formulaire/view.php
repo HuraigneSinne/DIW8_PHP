@@ -3,26 +3,38 @@
 ?>
 
 <?php
+    // Nombre d'éléments affichable par page
     $nb_element = 3;
 
-    // Le numéro de la page que nous souhaitons visualiser
+    // Le numéro de la page que nous souhaitons visualiser, 1 par défaut
     $page = getInt('page', 1);
-
+    // Calcul de l'offset pour la requête SQL
     $offset = ($page - 1) * $nb_element;   // Si on est à la page 1, (1-1)*10 = OFFSET 0, si on est à la page 2, (2-1)*10 = OFFSET 10, etc.
 
     // Filtre de recherche sur les colonnes nom/prénom/email/téléphone
     $search = getValue('s');
-    $where = '';
-    if ($search != '')
-        $where = "WHERE (firstname LIKE '%$search%' OR lastname LIKE '%$search%' OR email LIKE '%$search%' OR phone LIKE '%$search%')";
     
+    // Conditions du filtre, l'ajout des conditions se fera progressivement selon les paramètres passés
+    $conds = [];
+
+    if ($search != '')
+        $conds[] = "(firstname LIKE '%$search%' OR lastname LIKE '%$search%' OR email LIKE '%$search%' OR phone LIKE '%$search%')";
+    
+    // Souscription au mail ?
     $mail_subscribe = getValue('mail_subscribe');
     if ($mail_subscribe == '1')
-        $where .= ' AND mail_subscribe = 1';
+        $conds[] = 'mail_subscribe = 1';
+    // Souscription au téléphone ?
     $phone_subscribe = getValue('phone_subscribe');
     if ($phone_subscribe == '1')
-        $where .= ' AND phone_subscribe = 1';
+        $conds[] = 'phone_subscribe = 1';
 
+    // Construction de la clause SQL WHERE selon les conditions
+    $where = '';
+    if (count($conds) > 0)
+        $where = 'WHERE ' . implode(' AND ', $conds);
+
+    // Affichage du formulaire de recherche
     echo '
         <form method="GET" action="#">
             <input type="search" placeholder="recherche" name="s" value="' . $search . '">
@@ -31,6 +43,7 @@
             <input type="submit" value="Rechercher">
         </form>';
     
+    // Ouverture de la connexion BDD (base de donnée)
     $db = connexion();
 
     $query = $db->query("SELECT COUNT(*) AS nb FROM utilisateur $where");
