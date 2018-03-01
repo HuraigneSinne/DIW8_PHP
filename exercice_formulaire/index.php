@@ -82,7 +82,7 @@
             error_log($requete->rowCount() . " ligne insérée");
 
             // Redirection vers view.php
-            header('view.php');
+            redirect('view.php');
         }
     }
 ?>

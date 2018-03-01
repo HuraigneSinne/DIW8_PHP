@@ -21,3 +21,24 @@ function table_html($array, $updateable = false, $update_url = '') {
     
     return $table;
 }
+
+function redirect($location) {
+    header('Location: ' . $location);
+    die();
+}
+
+function getValue($value, $default = '') {
+    return !empty($_GET[$value]) ? $_GET[$value] : $default;
+}
+
+function getInt($value, $default = '') {
+    return (int)getValue($value, $default);
+}
+
+function postValue($value, $default = '') {
+    return !empty($_POST[$value]) ? $_POST[$value] : $default;
+}
+
+function postInt($value, $default = '') {
+    return (int)postValue($value, $default);
+}
