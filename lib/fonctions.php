@@ -78,6 +78,9 @@ function postInt($value, $default = '') {
     return (int)postValue($value, $default);
 }
 
+/**
+ * getImplode génère la chaine de $_GET à passer en url
+ */
 function getImplode($key = '', $new_val = '') {
     if ($key != '')
         $_GET[$key] = $new_val;
