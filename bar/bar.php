@@ -16,7 +16,6 @@
             $page_error[] = 'Bar inconnu';
     }
 
-    var_dump($page_error);
 ?>
     
     <main role="main" class="container">

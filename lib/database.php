@@ -3,7 +3,7 @@
 define('HOST', 'localhost'); // Domaine ou IP du serveur ou est située la base de données
 define('USER', 'root'); // Nom d'utilisateur autorisé à se connecter à la base
 define('PASS', ''); // Mot de passe de connexion à la base
-define('DB', 'diw8'); // Base de données sur laquelle on va faire les requêtes
+define('DB', 'bar'); // Base de données sur laquelle on va faire les requêtes
 
 function connexion() {
     static $db;
