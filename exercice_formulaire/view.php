@@ -1,8 +1,24 @@
 <?php
     session_start();
-    $connected = isset($_SESSION['connected']) && $_SESSION['connected'];
+
+    require_once('../lib/fonctions.php');
+
+    if (getValue('disconnect') == 1) {
+        echo "deconnexion !";
+        supprimeSession();
+    }
+
+    $connected = isset($_SESSION['id']);
     require_once('header.php');
+
 ?>
+
+<?php if ($connected) : ?>
+<form>
+    <input type="hidden" name="disconnect" value="1"/>
+    <button>Déconnexion</button>
+</form>
+<?php endif; ?>
 
 <?php
     // Nombre d'éléments affichable par page
