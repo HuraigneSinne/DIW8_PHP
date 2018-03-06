@@ -10,7 +10,7 @@
     $bars = $query->fetchAll();
 
     if (count($bars) == 0) {
-        $content = 'Désolé, nous n\'avons rien à vous porposer, revenez plus tard';
+        $content = 'Désolé, nous n\'avons rien à vous proposer, revenez plus tard';
     } else {
         $content = '<table class="table">';
         $content .= '<tr>
