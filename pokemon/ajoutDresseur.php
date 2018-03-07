@@ -28,6 +28,7 @@
         }
 
         if (count($form_errors) == 0) {
+            // Connexion à la base
             try {
                 $db_options = array(
                     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", // On force l'encodage en utf8
@@ -38,6 +39,8 @@
             } catch (PDOException $e) {
                 die("Erreur de connexion : " . $e->getMessage());
             }
+
+            $query = $db->prepare("INSERT INTO ")
         }
     }
 ?>
