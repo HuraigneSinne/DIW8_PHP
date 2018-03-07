@@ -13,8 +13,14 @@
         $query->bindValue(":id", $id_bar, PDO::PARAM_INT);
         $query->execute();
         if (!$bar = $query->fetch()) {
-            $page_error[] = 'Bar inconnu';
+            die('Bar inconnu');
         }
+
+        $query = $db->prepare("SELECT produit.id, produit.nom, barproduit.prix FROM barproduit JOIN produit ON (id_produit = id) WHERE id_bar = :id");
+        $query->bindValue(":id", $id_bar, PDO::PARAM_INT);
+        $query->execute();
+        $produits = $query->fetchAll();
+
     } else {
         die("Bar non précisé");
     }
@@ -31,7 +37,20 @@
             <li>Style : <?php echo $bar['style']; ?></li>
         </ul>
         <div>
-            
+            <table>
+                <tr>
+                    <th>Id produit</th>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                </tr>
+                <?php foreach($produits as $produit) : ?>
+                <tr>
+                    <td><?php echo $produit['id']; ?></td>
+                    <td><?php echo $produit['nom']; ?></td>
+                    <td><?php echo $produit['prix']; ?>€</td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
         </div>
     </main>
 
