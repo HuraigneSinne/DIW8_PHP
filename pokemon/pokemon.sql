@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 12 mars 2018 à 09:58
+-- Généré le :  lun. 12 mars 2018 à 10:00
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.1.14
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `pokemon`
 --
+CREATE DATABASE IF NOT EXISTS `pokemon` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `pokemon`;
 
 -- --------------------------------------------------------
 
