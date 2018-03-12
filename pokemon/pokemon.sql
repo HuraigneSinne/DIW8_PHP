@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 08 mars 2018 à 13:38
+-- Généré le :  lun. 12 mars 2018 à 09:58
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.1.14
 
@@ -63,8 +63,9 @@ CREATE TABLE `dresseur_pokemon` (
 --
 
 INSERT INTO `dresseur_pokemon` (`id_dresseur`, `id_pokemon`, `date_capture`) VALUES
-(1, 8, '2017-11-01'),
-(2, 9, '2018-03-01');
+(1, 6, '2018-03-08'),
+(2, 7, '2018-03-12'),
+(2, 10, '2018-03-12');
 
 -- --------------------------------------------------------
 
